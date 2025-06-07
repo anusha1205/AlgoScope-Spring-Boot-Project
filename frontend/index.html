@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AlgoScope</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>AlgoScope</h1>
+
+  <div class="tabs">
+    <button onclick="showTab('sorting')">Sorting</button>
+    <button onclick="showTab('linkedlist')">Linked List</button>
+    <button onclick="showTab('tree')">Tree</button>
+    <button onclick="showTab('graph')">Graph</button>
+  </div>
+
+  <!-- Sorting Tab -->
+  <div id="sorting" class="tab-content">
+    <h2>Sorting Visualizer</h2>
+    <input id="arrayInput" placeholder="e.g., 5,1,4,2,3" />
+    <select id="algorithm">
+      <option value="bubble">Bubble Sort</option>
+      <option value="insertion">Insertion Sort</option>
+      <option value="selection">Selection Sort</option>
+      <option value="merge">Merge Sort</option>
+      <option value="quick">Quick Sort</option>
+    </select>
+    <button onclick="startSort()">Start Sorting</button>
+    <div id="output"></div>
+  </div>
+
+  <!-- Linked List Tab -->
+  <div id="linkedlist" class="tab-content" style="display:none;">
+    <h2>Linked List Visualizer</h2>
+    <input id="llValue" placeholder="Enter value" />
+    <button onclick="insertAtHead()">Insert at Head</button>
+    <button onclick="insertAtTail()">Insert at Tail</button>
+    <input id="llDeleteIndex" placeholder="Delete index" />
+    <button onclick="deleteAtIndex()">Delete at Index</button>
+    <div id="llOutput"></div>
+  </div>
+
+  <!-- Tree Tab -->
+  <div id="tree" class="tab-content" style="display:none;">
+    <h2>Tree Visualizer</h2>
+    <input id="treeValue" placeholder="Enter value" />
+    <button onclick="insertTreeNode()">Insert</button>
+    <select id="treeTraversal">
+      <option value="inorder">Inorder</option>
+      <option value="preorder">Preorder</option>
+      <option value="postorder">Postorder</option>
+    </select>
+    <button onclick="traverseTree()">Traverse</button>
+    <div id="treeOutput"></div>
+  </div>
+
+  <!-- Graph Tab -->
+  <div id="graph" class="tab-content" style="display:none;">
+    <h2>Graph Visualizer</h2>
+    <input id="graphNode" placeholder="Add node" />
+    <button onclick="addGraphNode()">Add Node</button>
+    <input id="graphFrom" placeholder="From" />
+    <input id="graphTo" placeholder="To" />
+    <button onclick="addGraphEdge()">Add Edge</button>
+    <input id="graphStart" placeholder="Start node" />
+    <button onclick="bfsGraph()">BFS</button>
+    <button onclick="dfsGraph()">DFS</button>
+    <div id="graphOutput"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
