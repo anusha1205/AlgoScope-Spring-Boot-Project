@@ -59,7 +59,7 @@ function animateBars(steps) {
     steps.forEach((step, i) => {
         setTimeout(() => {
             step.forEach((v, j) => {
-                bars[j].style.width = `${ 40}px`; 
+                bars[j].style.width = `${40}px`;
                 bars[j].style.height = `${v * 35}px`;  // Updated the multiplier back to 15
                 bars[j].querySelector(".bar-value").textContent = v;  // Update the value on the bar
                 bars[j].classList.add("active");
@@ -111,9 +111,12 @@ function drawLinkedList(arr) {
 
 // 4. Tree Visualizer -------------------------------------------------------
 function insertTreeNode() {
-    fetch(`http://localhost:8080/api/tree/insert?value=${document.getElementById("treeValue").value}`, { method: "POST" })
+    fetch(`http://localhost:8080/api/tree/insert?value=${document.getElementById('treeValue').value}`, { method: 'POST' })
         .then(r => r.json())
-        .then(updateTree);
+        .then(data => {
+            updateTree(data);
+            fetchAndDrawTree();              // ← redraw SVG immediately
+        });
 }
 function traverseTree() {
     fetch(`http://localhost:8080/api/tree/traverse/${document.getElementById("treeTraversal").value}`)
