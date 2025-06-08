@@ -202,7 +202,7 @@ function fetchAndDrawGraph() {
 }
 function drawGraph(data) {
     const svg = document.getElementById("graphSVG");
-    svg.innerHTML = "";
+    svg.innerHTML = ""; 
     const nodes = Object.keys(data);
     const cx = 300, cy = 200, r = 150;
     const pos = {};
