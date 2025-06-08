@@ -2,6 +2,8 @@ package com.example.algoscope.service;
 
 import org.springframework.stereotype.Service;
 
+import com.example.algoscope.dto.TreeNodeDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,23 @@ import java.util.List;
 public class TreeService {
 
     private TreeNode root;
+
+    public TreeNodeDTO getTreeStructure() {
+        return toDTO(root);
+    }
+
+    private TreeNodeDTO toDTO(TreeNode node) {
+        if (node == null)
+            return null;
+        TreeNodeDTO dto = new TreeNodeDTO(node.val);
+        dto.left = toDTO(node.left);
+        dto.right = toDTO(node.right);
+        return dto;
+    }
+
+    public void reset() {
+        root = null;
+    }
 
     private static class TreeNode {
         int val;
@@ -28,7 +47,7 @@ public class TreeService {
             return new TreeNode(value);
         if (value < node.val)
             node.left = insertRec(node.left, value);
-        else
+        else if (value > node.val)
             node.right = insertRec(node.right, value);
         return node;
     }
@@ -87,4 +106,8 @@ public class TreeService {
         postorder(node.right, res);
         res.add(node.val);
     }
+
+    // public TreeNode getRoot() {
+    //     return root;
+    // }
 }

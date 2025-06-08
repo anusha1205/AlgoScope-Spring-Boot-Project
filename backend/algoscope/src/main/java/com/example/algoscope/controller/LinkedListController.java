@@ -14,6 +14,11 @@ public class LinkedListController {
     @Autowired
     private LinkedListService linkedListService;
 
+    @PostMapping("/reset")
+    public void resetList() {
+        linkedListService.reset();
+    }
+
     @PostMapping("/insertHead")
     public List<Integer> insertAtHead(@RequestParam int value) {
         linkedListService.insertAtHead(value);

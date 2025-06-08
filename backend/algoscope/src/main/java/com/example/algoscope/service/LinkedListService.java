@@ -10,6 +10,10 @@ public class LinkedListService {
 
     private Node head;
 
+    public void reset() {
+        head = null;
+    }
+
     private static class Node {
         int val;
         Node next;

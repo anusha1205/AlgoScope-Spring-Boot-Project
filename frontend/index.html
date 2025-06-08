@@ -1,73 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>AlgoScope</title>
-  <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AlgoScope</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet">
+
+	<link rel="icon" href="images/algoscope_icon.png">
 </head>
+
 <body>
-  <h1>AlgoScope</h1>
+	<header>
+		<h1>⚙️ AlgoScope - DSA Visualizer</h1>
+	</header>
 
-  <div class="tabs">
-    <button onclick="showTab('sorting')">Sorting</button>
-    <button onclick="showTab('linkedlist')">Linked List</button>
-    <button onclick="showTab('tree')">Tree</button>
-    <button onclick="showTab('graph')">Graph</button>
-  </div>
 
-  <!-- Sorting Tab -->
-  <div id="sorting" class="tab-content">
-    <h2>Sorting Visualizer</h2>
-    <input id="arrayInput" placeholder="e.g., 5,1,4,2,3" />
-    <select id="algorithm">
-      <option value="bubble">Bubble Sort</option>
-      <option value="insertion">Insertion Sort</option>
-      <option value="selection">Selection Sort</option>
-      <option value="merge">Merge Sort</option>
-      <option value="quick">Quick Sort</option>
-    </select>
-    <button onclick="startSort()">Start Sorting</button>
-    <div id="output"></div>
-  </div>
 
-  <!-- Linked List Tab -->
-  <div id="linkedlist" class="tab-content" style="display:none;">
-    <h2>Linked List Visualizer</h2>
-    <input id="llValue" placeholder="Enter value" />
-    <button onclick="insertAtHead()">Insert at Head</button>
-    <button onclick="insertAtTail()">Insert at Tail</button>
-    <input id="llDeleteIndex" placeholder="Delete index" />
-    <button onclick="deleteAtIndex()">Delete at Index</button>
-    <div id="llOutput"></div>
-  </div>
+	<div class="nav-main-div">
+		<nav class="tabs">
+			<button onclick="showTab('sorting')">Sorting</button>
+			<button onclick="showTab('linkedlist')">Linked List</button>
+			<button onclick="showTab('tree')">Tree</button>
+			<button onclick="showTab('graph')">Graph</button>
+		</nav>
 
-  <!-- Tree Tab -->
-  <div id="tree" class="tab-content" style="display:none;">
-    <h2>Tree Visualizer</h2>
-    <input id="treeValue" placeholder="Enter value" />
-    <button onclick="insertTreeNode()">Insert</button>
-    <select id="treeTraversal">
-      <option value="inorder">Inorder</option>
-      <option value="preorder">Preorder</option>
-      <option value="postorder">Postorder</option>
-    </select>
-    <button onclick="traverseTree()">Traverse</button>
-    <div id="treeOutput"></div>
-  </div>
 
-  <!-- Graph Tab -->
-  <div id="graph" class="tab-content" style="display:none;">
-    <h2>Graph Visualizer</h2>
-    <input id="graphNode" placeholder="Add node" />
-    <button onclick="addGraphNode()">Add Node</button>
-    <input id="graphFrom" placeholder="From" />
-    <input id="graphTo" placeholder="To" />
-    <button onclick="addGraphEdge()">Add Edge</button>
-    <input id="graphStart" placeholder="Start node" />
-    <button onclick="bfsGraph()">BFS</button>
-    <button onclick="dfsGraph()">DFS</button>
-    <div id="graphOutput"></div>
-  </div>
+		<main>
+			<!-- Sorting Tab -->
+			<section id="sorting" class="tab-content">
+				<h2>🎞️ Sorting Visualizer</h2>
+				<div style="display: flex;justify-content: space-evenly;width: 100%;">
+					<input id="arrayInput" style="width: 30%;" placeholder="Enter Numbers e.g. 5,1,4,2,3" />
+					<select id="algorithm" style="width: 30%;" 	>
+						<option value="bubble">Bubble Sort</option>
+						<option value="insertion">Insertion Sort</option>
+						<option value="selection">Selection Sort</option>
+						<option value="merge">Merge Sort</option>
+						<option value="quick">Quick Sort</option>
+					</select>
+					<button style="width: 12%;"  onclick="startSort()">Visualize</button>
+				</div>
 
-  <script src="app.js"></script>
+				<div id="barContainer" class="bar-container"></div>
+			</section>
+
+			<!-- Linked List Tab -->
+			<section id="linkedlist" class="tab-content" style="display:none;">
+				<h2>🔗 Linked List Visualizer</h2>
+				<input id="llValue" placeholder="Enter value" />
+				<button onclick="insertAtHead()">Insert Head</button>
+				<button onclick="insertAtTail()">Insert Tail</button>
+				<input id="llDeleteIndex" placeholder="Delete index" />
+				<button onclick="deleteAtIndex()">Delete</button>
+				<button onclick="resetLinkedList()">Reset List</button>
+				<div id="llOutput" class="visual-output"></div>
+
+				<!-- SVG for Linked List with arrow marker definition -->
+				<svg id="llSVG" width="100%" height="100px" style="background:#222; margin-top:10px;">
+					<defs>
+						<marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto"
+							markerUnits="strokeWidth">
+							<path d="M0,0 L10,5 L0,10 Z" fill="white" />
+						</marker>
+					</defs>
+				</svg>
+			</section>
+
+			<!-- Tree Tab -->
+			<section id="tree" class="tab-content" style="display:none; ">
+				<h2>🌳 Tree Visualizer</h2>
+				<div class="controls">
+					<input id="treeValue" placeholder="Enter value" />
+					<button onclick="insertTreeNode()">Insert</button>
+					<select id="treeTraversal">
+						<option value="inorder">Inorder</option>
+						<option value="preorder">Preorder</option>
+						<option value="postorder">Postorder</option>
+					</select>
+					<button onclick="traverseTree()">Traverse</button>
+					<button onclick="resetTree()">Reset Tree</button>
+				</div>
+				<div id="treeOutput" class="visual-output"></div>
+				<svg id="treeSVG" width="100%" height="300px"></svg>
+			</section>
+
+			<!-- Graph Tab -->
+			<section id="graph" class="tab-content" style="display:none;">
+				<h2>🌐 Graph Visualizer</h2>
+				<div style="display: flex;">
+					<div>
+						<div>
+							<input id="graphNode" placeholder="Add node" />
+							<button onclick="addGraphNode()">Add Node</button>
+						</div>
+						<div>
+							<input id="graphFrom" placeholder="From" />
+							<input id="graphTo" placeholder="To" />
+							<button onclick="addGraphEdge()">Add Edge</button>
+						</div>
+						<div>
+							<input id="graphStart" placeholder="Start node for traversal" />
+							<button onclick="bfsGraph()">BFS</button>
+							<button onclick="dfsGraph()">DFS</button>
+							<button onclick="resetGraph()">Reset Graph</button>
+						</div>
+					</div>
+					<div class="visual-output">
+						<p id="bfsOutput"><strong>BFS:</strong> (none)</p>
+						<p id="dfsOutput"><strong>DFS:</strong> (none)</p>
+					</div>
+				</div>
+				<div class="graph-container">
+					<svg id="graphSVG" width="100%" height="400" style="background:#222"></svg>
+				</div>
+
+			</section>
+
+		</main>
+
+	</div>
+
+	<footer>
+		<p>Made with by Anusha Gonal</p>
+	</footer>
+
+	<script src="app.js"></script>
 </body>
+
 </html>
